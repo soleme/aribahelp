@@ -638,6 +638,12 @@
       text-transform: uppercase;
     }
 
+    mark {
+      padding: 0 2px;
+      color: var(--primary);
+      background: linear-gradient(90deg, var(--m-blue-light) 0 33.33%, var(--m-blue-dark) 33.33% 66.66%, var(--m-red) 66.66% 100%);
+    }
+
     .detail {
       padding: 40px;
       background: var(--surface-soft);
@@ -1073,6 +1079,19 @@
         .replaceAll("'", "&#039;");
     }
 
+    function escapeRegExp(value) {
+      return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function highlight(value) {
+      const escaped = escapeHtml(value);
+      const query = state.query.trim();
+      if (!query) return escaped;
+
+      const pattern = new RegExp(`(${escapeRegExp(escapeHtml(query))})`, "gi");
+      return escaped.replace(pattern, "<mark>$1</mark>");
+    }
+
     function parseCsvLine(line) {
       const values = [];
       let current = "";
@@ -1234,12 +1253,12 @@
         article.innerHTML = `
           <div class="term-head">
             <div>
-              <h2 class="term-name">${escapeHtml(term.english_term)}</h2>
-              <div class="term-ko">${escapeHtml(term.korean_term)}${term.abbreviation ? ` · ${escapeHtml(term.abbreviation)}` : ""}</div>
+              <h2 class="term-name">${highlight(term.english_term)}</h2>
+              <div class="term-ko">${highlight(term.korean_term)}${term.abbreviation ? ` · ${highlight(term.abbreviation)}` : ""}</div>
             </div>
             <span class="badge">${escapeHtml(state.view === "flow" ? term.workflow_stage : term.category)}</span>
           </div>
-          <p class="term-desc">${escapeHtml(term.plain_description)}</p>
+          <p class="term-desc">${highlight(term.plain_description)}</p>
           <div class="term-footer">${escapeHtml(term.level)} · ${escapeHtml(term.review_status)}</div>
         `;
         article.addEventListener("click", () => {
@@ -1268,8 +1287,8 @@
       }
 
       root.innerHTML = `
-        <h2>${escapeHtml(term.english_term)}</h2>
-        <div class="korean">${escapeHtml(term.korean_term)}${term.abbreviation ? ` · ${escapeHtml(term.abbreviation)}` : ""}</div>
+        <h2>${highlight(term.english_term)}</h2>
+        <div class="korean">${highlight(term.korean_term)}${term.abbreviation ? ` · ${highlight(term.abbreviation)}` : ""}</div>
         <div class="meta-row">
           <span class="badge">${escapeHtml(term.category)}</span>
           <span class="badge">${escapeHtml(term.workflow_stage)}</span>
@@ -1278,15 +1297,15 @@
         </div>
         <div class="section">
           <h3>Plain definition</h3>
-          <p>${escapeHtml(term.plain_description)}</p>
+          <p>${highlight(term.plain_description)}</p>
         </div>
         <div class="section">
           <h3>Business example</h3>
-          <p>${escapeHtml(term.business_example)}</p>
+          <p>${highlight(term.business_example)}</p>
         </div>
         <div class="section">
           <h3>Screen hint</h3>
-          <p>${escapeHtml(term.screen_hint)}</p>
+          <p>${highlight(term.screen_hint)}</p>
         </div>
         <div class="section">
           <h3>Related terms</h3>
