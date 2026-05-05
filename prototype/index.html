@@ -1,0 +1,1401 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAP Ariba 용어집 프로토타입</title>
+  <style>
+    :root {
+      --canvas: #000000;
+      --primary: #ffffff;
+      --body: #bbbbbb;
+      --body-strong: #e6e6e6;
+      --muted: #7e7e7e;
+      --surface-soft: #0d0d0d;
+      --surface-card: #1a1a1a;
+      --surface-elevated: #262626;
+      --carbon-gray: #2b2b2b;
+      --hairline: #3c3c3c;
+      --m-blue-light: #0066b1;
+      --m-blue-dark: #1c69d4;
+      --m-red: #e22718;
+      --warning: #f4b400;
+      --font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--primary);
+      background: var(--canvas);
+      font-family: var(--font);
+      font-weight: 300;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      border-bottom: 1px solid var(--hairline);
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--hairline);
+    }
+
+    .brand-mark span:nth-child(1) {
+      background: var(--m-blue-light);
+    }
+
+    .brand-mark span:nth-child(2) {
+      background: var(--m-blue-dark);
+    }
+
+    .brand-mark span:nth-child(3) {
+      background: var(--m-red);
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      color: var(--body);
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links span {
+      white-space: nowrap;
+    }
+
+    .hero {
+      min-height: 520px;
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.58) 38%, rgba(0, 0, 0, 0.08) 100%),
+        url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2400&q=80") center / cover;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .hero-inner {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 64px 32px;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--body-strong);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 880px;
+      margin: 0;
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin: 22px 0 0;
+      color: var(--body-strong);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .m-stripe {
+      height: 4px;
+      width: 180px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 34px;
+    }
+
+    .m-stripe span:nth-child(1) {
+      background: var(--m-blue-light);
+    }
+
+    .m-stripe span:nth-child(2) {
+      background: var(--m-blue-dark);
+    }
+
+    .m-stripe span:nth-child(3) {
+      background: var(--m-red);
+    }
+
+    .workspace {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 96px 32px;
+      display: grid;
+      grid-template-columns: 280px minmax(360px, 1fr) 420px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .workflow {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 96px 32px 0;
+    }
+
+    .goals {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 96px 32px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .section-head h2 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .section-head p {
+      max-width: 420px;
+      margin: 0;
+      color: var(--body);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .goal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .workflow-map {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(150px, 1fr));
+      gap: 0;
+      overflow-x: auto;
+      border: 1px solid var(--hairline);
+      background: var(--surface-soft);
+    }
+
+    .workflow-step {
+      min-height: 190px;
+      min-width: 150px;
+      padding: 24px;
+      border-right: 1px solid var(--hairline);
+      background: var(--surface-card);
+    }
+
+    .workflow-step:last-child {
+      border-right: 0;
+    }
+
+    .workflow-step strong {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .workflow-step h3 {
+      margin: 20px 0 12px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .workflow-step p {
+      margin: 0;
+      color: var(--body);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .artifact-card {
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      border: 1px solid var(--hairline);
+      color: var(--primary);
+      background: var(--canvas);
+      text-decoration: none;
+    }
+
+    .artifact-card:hover {
+      border-color: var(--primary);
+      background: var(--surface-card);
+    }
+
+    .artifact-card::before {
+      content: "";
+      width: 72px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--m-blue-light) 0 33.33%, var(--m-blue-dark) 33.33% 66.66%, var(--m-red) 66.66% 100%);
+    }
+
+    .artifact-card h3 {
+      margin: 28px 0 14px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .artifact-card p {
+      margin: 0;
+      color: var(--body);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .artifact-card span {
+      margin-top: auto;
+      padding-top: 24px;
+      color: var(--body-strong);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .goal-card {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 24px;
+      border: 1px solid var(--hairline);
+      border-radius: 0;
+      color: var(--primary);
+      background: var(--surface-card);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .goal-card:hover,
+    .goal-card.active {
+      border-color: var(--primary);
+      background: var(--surface-elevated);
+    }
+
+    .goal-card.active {
+      background-image: linear-gradient(90deg, var(--m-blue-light) 0 33.33%, var(--m-blue-dark) 33.33% 66.66%, var(--m-red) 66.66% 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 4px;
+      background-position: 0 0;
+    }
+
+    .goal-index {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .goal-title {
+      margin-top: 28px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .goal-desc {
+      margin-top: 16px;
+      color: var(--body);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .goal-meta {
+      margin-top: auto;
+      padding-top: 24px;
+      color: var(--body-strong);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .panel {
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: 0;
+    }
+
+    .filters,
+    .detail {
+      position: sticky;
+      top: 88px;
+    }
+
+    .filters {
+      padding: 24px;
+    }
+
+    .filter-group {
+      margin-bottom: 40px;
+    }
+
+    .filter-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .filter-title {
+      margin: 0 0 16px;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .filter-button {
+      width: 100%;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 0;
+      border: 0;
+      border-bottom: 1px solid var(--hairline);
+      border-radius: 0;
+      color: var(--body);
+      background: transparent;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-align: left;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .filter-button:hover,
+    .filter-button.active {
+      color: var(--primary);
+    }
+
+    .filter-button.active::before {
+      content: "";
+      width: 32px;
+      height: 4px;
+      flex: 0 0 32px;
+      background: linear-gradient(90deg, var(--m-blue-light) 0 33.33%, var(--m-blue-dark) 33.33% 66.66%, var(--m-red) 66.66% 100%);
+    }
+
+    .filter-button .label {
+      flex: 1;
+    }
+
+    .filter-button .count {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    .content {
+      display: grid;
+      gap: 24px;
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .search {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px;
+      border: 1px solid var(--hairline);
+      border-radius: 0;
+      outline: 0;
+      color: var(--primary);
+      background: var(--surface-card);
+      font-size: 16px;
+      font-weight: 300;
+    }
+
+    .search:focus {
+      border-color: var(--primary);
+    }
+
+    .view-toggle {
+      height: 48px;
+      display: inline-flex;
+      border: 1px solid var(--hairline);
+      background: var(--canvas);
+    }
+
+    .view-toggle button {
+      min-width: 86px;
+      padding: 0 18px;
+      border: 0;
+      border-right: 1px solid var(--hairline);
+      border-radius: 0;
+      color: var(--body);
+      background: transparent;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .view-toggle button:last-child {
+      border-right: 0;
+    }
+
+    .view-toggle .active {
+      color: var(--primary);
+      background: var(--surface-card);
+    }
+
+    .summary {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 24px;
+      color: var(--body);
+      background: var(--surface-soft);
+      font-size: 14px;
+      font-weight: 300;
+      border: 1px solid var(--hairline);
+    }
+
+    .summary strong {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .term-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .term-card {
+      min-height: 238px;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      background: var(--surface-card);
+      cursor: pointer;
+      transition: background 140ms ease, border-color 140ms ease;
+    }
+
+    .term-card:hover,
+    .term-card.active {
+      border-color: var(--primary);
+      background: var(--surface-elevated);
+    }
+
+    .term-card.active {
+      background-image: linear-gradient(90deg, var(--m-blue-light) 0 33.33%, var(--m-blue-dark) 33.33% 66.66%, var(--m-red) 66.66% 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 4px;
+      background-position: 0 0;
+    }
+
+    .term-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .term-name {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .term-ko {
+      margin-top: 8px;
+      color: var(--body);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border: 1px solid var(--hairline);
+      border-radius: 0;
+      color: var(--primary);
+      background: transparent;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .term-desc {
+      margin: 24px 0 0;
+      color: var(--body);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .term-footer {
+      margin-top: auto;
+      padding-top: 24px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .detail {
+      padding: 40px;
+      background: var(--surface-soft);
+    }
+
+    .detail h2 {
+      margin: 0;
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .detail .korean {
+      margin-top: 12px;
+      color: var(--body-strong);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.4;
+    }
+
+    .meta-row {
+      margin-top: 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .status {
+      color: var(--warning);
+      border-color: color-mix(in srgb, var(--warning) 55%, var(--hairline));
+    }
+
+    .section {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .section h3 {
+      margin: 0 0 14px;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .section p {
+      margin: 0;
+      color: var(--body);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .source {
+      color: var(--primary);
+      overflow-wrap: anywhere;
+      text-decoration: none;
+    }
+
+    .source::after {
+      content: " →";
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      padding: 40px;
+      color: var(--muted);
+      background: var(--surface-card);
+      border: 1px solid var(--hairline);
+      text-align: center;
+    }
+
+    .photo-band {
+      min-height: 380px;
+      display: grid;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.36)),
+        url("https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=2400&q=80") center / cover;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .photo-band-inner {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 80px 32px;
+    }
+
+    .photo-band h2 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 700;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .photo-band p {
+      max-width: 560px;
+      margin: 20px 0 0;
+      color: var(--body-strong);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1180px) {
+      .workspace {
+        grid-template-columns: 240px minmax(0, 1fr);
+      }
+
+      .detail {
+        grid-column: 1 / -1;
+        position: static;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .top-nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner,
+      .workflow,
+      .goals,
+      .workspace,
+      .photo-band-inner {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .goals,
+      .workflow {
+        padding-top: 64px;
+      }
+
+      .workspace {
+        padding-top: 64px;
+        padding-bottom: 64px;
+        grid-template-columns: 1fr;
+      }
+
+      .filters,
+      .detail {
+        position: static;
+      }
+
+      .section-head,
+      .search-row,
+      .goal-grid,
+      .artifact-grid,
+      .term-list {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        display: grid;
+      }
+
+      .view-toggle {
+        width: 100%;
+      }
+
+      .view-toggle button {
+        flex: 1;
+      }
+
+      .summary {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      .detail {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav" aria-label="주요 탐색">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="brand-title">SAP Ariba Glossary</div>
+    </div>
+    <div class="nav-links" aria-hidden="true">
+      <span>Terms</span>
+      <span>Workflow</span>
+      <span>Goals</span>
+      <span>Artifacts</span>
+      <span>Sources</span>
+      <span>Review</span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Procurement language system</p>
+      <h1>업무 흐름으로 이해하는 SAP Ariba 용어집.</h1>
+      <p class="hero-copy">공식 SAP 문서 기반 용어를 구매, 소싱, 계약, 입고, 송장 흐름에 맞춰 정리합니다.</p>
+      <div class="m-stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <section class="goals" aria-label="목표 기반 탐색">
+    <div class="section-head">
+      <h2>먼저 목표를 고르고 필요한 용어만 봅니다.</h2>
+      <p>목표 카드는 검색과 필터를 자동으로 세팅합니다. 전체 사전을 훑기 전에 현재 업무에 필요한 용어 묶음부터 확인할 수 있습니다.</p>
+    </div>
+    <div id="goalGrid" class="goal-grid"></div>
+  </section>
+
+  <section class="workflow" aria-label="SAP Ariba 업무 흐름">
+    <div class="section-head">
+      <h2>SAP Ariba 기준 업무 흐름과 공식 참조 산출물.</h2>
+      <p>아래 흐름도는 SAP Help Portal의 구매요청 워크플로우, 발주 프로세스, 소싱 이벤트 프로세스, 입고 기준 송장 검증 문서를 기반으로 만든 자체 요약입니다.</p>
+    </div>
+
+    <div class="workflow-map" aria-label="요약 업무 흐름도">
+      <article class="workflow-step">
+        <strong>01</strong>
+        <h3>소싱</h3>
+        <p>RFI, RFQ, RFP, 경매 이벤트를 열고 공급업체 응답을 평가합니다.</p>
+      </article>
+      <article class="workflow-step">
+        <strong>02</strong>
+        <h3>계약</h3>
+        <p>선정 결과를 계약 조건과 조항으로 정리하고 계약 워크스페이스에서 승인합니다.</p>
+      </article>
+      <article class="workflow-step">
+        <strong>03</strong>
+        <h3>구매요청</h3>
+        <p>요청자가 카탈로그나 비카탈로그 품목을 담아 구매요청을 제출합니다.</p>
+      </article>
+      <article class="workflow-step">
+        <strong>04</strong>
+        <h3>승인</h3>
+        <p>승인 흐름과 승인 규칙에 따라 승인자들이 승인하거나 반려합니다.</p>
+      </article>
+      <article class="workflow-step">
+        <strong>05</strong>
+        <h3>발주</h3>
+        <p>승인된 구매요청은 공급업체별 발주서로 생성되어 네트워크나 수동 방식으로 전달됩니다.</p>
+      </article>
+      <article class="workflow-step">
+        <strong>06</strong>
+        <h3>입고</h3>
+        <p>공급업체는 주문 확인과 출하 통지를 보내고 구매자는 입고 또는 서비스 시트를 처리합니다.</p>
+      </article>
+      <article class="workflow-step">
+        <strong>07</strong>
+        <h3>송장·지급</h3>
+        <p>송장은 발주와 입고 기준으로 대사되고 예외 해결 후 지급 요청으로 이어집니다.</p>
+      </article>
+    </div>
+
+    <div class="artifact-grid" aria-label="공식 SAP 참조 산출물">
+      <a class="artifact-card" href="./artifacts/purchase-requisition-workflow.html">
+        <h3>Purchase Requisition Workflow</h3>
+        <p>요청자가 PR을 만들고 승인 흐름을 거쳐 발주와 입고 및 지급 요청으로 이어지는 흐름을 한글로 정리합니다.</p>
+        <span>View Korean artifact →</span>
+      </a>
+      <a class="artifact-card" href="./artifacts/purchase-order-process.html">
+        <h3>Purchase Order Process</h3>
+        <p>승인된 PR이 PO로 생성되고 공급업체에게 전달되는 발주 흐름과 주요 예외를 정리합니다.</p>
+        <span>View Korean artifact →</span>
+      </a>
+      <a class="artifact-card" href="./artifacts/sourcing-event-process.html">
+        <h3>Sourcing Event Process</h3>
+        <p>RFI, RFQ, RFP, 경매 이벤트의 생성과 응답 및 평가와 선정 흐름을 한글로 설명합니다.</p>
+        <span>View Korean artifact →</span>
+      </a>
+      <a class="artifact-card" href="./artifacts/guided-buying-approval-flow.html">
+        <h3>Guided Buying Approval Flow</h3>
+        <p>Guided Buying 요청이 승인 프로세스를 참조해 승인자를 추가하는 구조를 한글로 정리합니다.</p>
+        <span>View Korean artifact →</span>
+      </a>
+      <a class="artifact-card" href="./artifacts/gr-based-invoice-verification.html">
+        <h3>GR-Based Invoice Verification</h3>
+        <p>입고 기준 송장 검증에서 입고, 송장, IR, 예외가 어떻게 연결되는지 정리합니다.</p>
+        <span>View Korean artifact →</span>
+      </a>
+      <a class="artifact-card" href="./artifacts/order-confirmation-ship-notice.html">
+        <h3>Confirmation & Ship Notice</h3>
+        <p>공급업체의 주문 확인과 출하 통지 및 제어 키와 거래 규칙을 한글로 정리합니다.</p>
+        <span>View Korean artifact →</span>
+      </a>
+    </div>
+  </section>
+
+  <main class="workspace">
+    <aside class="panel filters">
+      <div id="categoryFilters" class="filter-group">
+        <p class="filter-title">Category</p>
+      </div>
+      <div id="workflowFilters" class="filter-group">
+        <p class="filter-title">Workflow</p>
+      </div>
+      <div id="statusFilters" class="filter-group">
+        <p class="filter-title">Review</p>
+      </div>
+    </aside>
+
+    <section class="content" aria-label="용어 목록">
+      <div class="search-row">
+        <input id="search" class="search" placeholder="영문, 한글, 약어, 설명 검색" aria-label="용어 검색">
+        <div class="view-toggle" aria-label="보기 전환">
+          <button id="termView" class="active" type="button">Terms</button>
+          <button id="flowView" type="button">Flow</button>
+        </div>
+      </div>
+
+      <div class="summary">
+        <span id="resultSummary">용어를 불러오는 중</span>
+        <span id="sortSummary">정렬: 업무 흐름순</span>
+      </div>
+
+      <div id="termList" class="term-list"></div>
+    </section>
+
+    <aside id="detail" class="panel detail" aria-label="용어 상세"></aside>
+  </main>
+
+  <section class="photo-band">
+    <div class="photo-band-inner">
+      <p class="eyebrow">Source discipline</p>
+      <h2>공식 정의와 실무 표현을 같은 화면에서 검수합니다.</h2>
+      <p>SAP Help Portal, SAP Learning, 내부 교육 자료를 연결해 용어별 출처와 검수 상태를 추적합니다.</p>
+    </div>
+  </section>
+
+  <script>
+    const workflowOrder = ["공통", "공급업체 온보딩", "공급업체 협업", "소싱", "계약", "구매요청", "승인", "발주", "입고", "송장", "지급"];
+    const goals = [
+      {
+        id: "all",
+        title: "전체 용어 검토",
+        description: "카테고리 제한 없이 117개 핵심 용어를 ABC순 또는 업무 흐름순으로 확인합니다.",
+        meta: "117 terms",
+        filters: { category: "전체", workflow: "전체", query: "", view: "terms" },
+      },
+      {
+        id: "new-user",
+        title: "신규 사용자 온보딩",
+        description: "SAP Ariba, 구매자, 공급업체, 워크스페이스처럼 기본 개념부터 먼저 봅니다.",
+        meta: "common first",
+        termIds: ["sap-ariba", "sap-business-network", "buyer", "supplier", "workspace", "task", "template", "notification", "erp", "integration"],
+        filters: { category: "전체", workflow: "전체", query: "", view: "terms" },
+      },
+      {
+        id: "buying-flow",
+        title: "구매요청에서 발주까지",
+        description: "카탈로그, 장바구니, 구매요청, 승인, 발주서로 이어지는 구매 흐름을 따라갑니다.",
+        meta: "buying flow",
+        termIds: ["guided-buying", "catalog", "shopping-cart", "non-catalog-item", "item", "line-item", "unit-of-measure", "quantity", "price", "accounting", "cost-center", "split-accounting", "budget-check", "requester", "preparer", "requisition", "approval", "approval-flow", "approver", "denial", "withdraw", "purchase-order", "release-order", "change-order", "cancel-order"],
+        filters: { category: "전체", workflow: "전체", query: "", view: "flow" },
+      },
+      {
+        id: "invoice-flow",
+        title: "입고와 송장 대사 이해",
+        description: "입고, 송장, 3자 대사, 예외, 지급 요청까지 정산 흐름의 핵심 용어를 묶어 봅니다.",
+        meta: "invoice flow",
+        termIds: ["goods-receipt", "receiving", "receipt", "partial-receipt", "negative-receipt", "return", "service-entry-sheet", "service-sheet", "lean-service", "invoice", "invoice-reconciliation", "three-way-match", "goods-receipt-based-invoice-verification", "reconciliation-rule", "exception", "invoice-exception", "exception-handler", "credit-memo", "invoice-status", "payment-request", "payment-terms", "discount-terms", "tax", "vat", "remit-to", "remittance-advice", "ers"],
+        filters: { category: "전체", workflow: "전체", query: "", view: "flow" },
+      },
+      {
+        id: "supplier-network",
+        title: "공급업체 협업 준비",
+        description: "SAP Business Network, 공급업체 등록, 프로필, 주문 확인, 사전 출하 통지 용어를 봅니다.",
+        meta: "supplier network",
+        termIds: ["sap-business-network", "supplier", "supplier-enablement", "supplier-profile", "supplier-registration", "qualification", "questionnaire", "registration-questionnaire", "qualification-questionnaire", "certificate", "supplier-risk", "order-confirmation", "control-key", "transaction-rule", "asn", "ship-notice", "carrier", "tracking-number", "packing-slip", "order-routing"],
+        filters: { category: "전체", workflow: "전체", query: "", view: "flow" },
+      },
+      {
+        id: "sourcing-contract",
+        title: "소싱과 계약 연결",
+        description: "소싱 이벤트, RFQ, 입찰 응답, 선정, 계약, 계약 준수까지 앞단 업무를 정리합니다.",
+        meta: "sourcing to contract",
+        termIds: ["sourcing", "sourcing-event", "event-template", "event-content", "event-status", "participant", "rfi", "rfq", "rfp", "auction", "lot", "bid", "scoring", "award", "contract", "contract-request", "contract-workspace", "contract-terms", "clause", "contract-compliance", "contract-renewal", "contract-expiration"],
+        filters: { category: "전체", workflow: "전체", query: "", view: "flow" },
+      },
+    ];
+
+    const state = {
+      terms: [],
+      selectedId: null,
+      query: "",
+      category: "전체",
+      workflow: "전체",
+      status: "전체",
+      view: "terms",
+      goal: "all",
+    };
+
+    let suppressUrlUpdate = false;
+
+    const fields = [
+      "id",
+      "english_term",
+      "korean_term",
+      "abbreviation",
+      "category",
+      "workflow_stage",
+      "plain_description",
+      "business_example",
+      "related_terms",
+      "source_url",
+      "screen_hint",
+      "level",
+      "review_status",
+    ];
+
+    const $ = (selector) => document.querySelector(selector);
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function parseCsvLine(line) {
+      const values = [];
+      let current = "";
+      let quoted = false;
+
+      for (let i = 0; i < line.length; i += 1) {
+        const char = line[i];
+        const next = line[i + 1];
+        if (char === '"' && quoted && next === '"') {
+          current += '"';
+          i += 1;
+        } else if (char === '"') {
+          quoted = !quoted;
+        } else if (char === "," && !quoted) {
+          values.push(current);
+          current = "";
+        } else {
+          current += char;
+        }
+      }
+      values.push(current);
+      return values;
+    }
+
+    function parseCsv(text) {
+      const lines = text.trim().split(/\r?\n/);
+      const header = parseCsvLine(lines.shift());
+      return lines.filter(Boolean).map((line) => {
+        const values = parseCsvLine(line);
+        const row = {};
+        header.forEach((name, index) => {
+          row[name] = values[index] || "";
+        });
+        return row;
+      });
+    }
+
+    function sortTerms(terms) {
+      if (state.view === "flow") {
+        return [...terms].sort((a, b) => {
+          const ai = workflowOrder.indexOf(a.workflow_stage);
+          const bi = workflowOrder.indexOf(b.workflow_stage);
+          return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi) || a.english_term.localeCompare(b.english_term);
+        });
+      }
+      return [...terms].sort((a, b) => a.english_term.localeCompare(b.english_term));
+    }
+
+    function filterTerms() {
+      const query = state.query.trim().toLowerCase();
+      const goal = goals.find((item) => item.id === state.goal);
+      const goalTermIds = goal?.termIds ? new Set(goal.termIds) : null;
+      return state.terms.filter((term) => {
+        const haystack = fields.map((field) => term[field]).join(" ").toLowerCase();
+        return (!goalTermIds || goalTermIds.has(term.id))
+          && (!query || haystack.includes(query))
+          && (state.category === "전체" || term.category === state.category)
+          && (state.workflow === "전체" || term.workflow_stage === state.workflow)
+          && (state.status === "전체" || term.review_status === state.status);
+      });
+    }
+
+    function countBy(field, value) {
+      if (value === "전체") return state.terms.length;
+      return state.terms.filter((term) => term[field] === value).length;
+    }
+
+    function renderFilterGroup(rootSelector, values, activeValue, field, onSelect) {
+      const root = $(rootSelector);
+      const title = root.querySelector(".filter-title");
+      root.innerHTML = "";
+      root.append(title);
+
+      values.forEach((value) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `filter-button${value === activeValue ? " active" : ""}`;
+        button.innerHTML = `<span class="label">${escapeHtml(value)}</span><span class="count">${countBy(field, value)}</span>`;
+        button.addEventListener("click", () => {
+          onSelect(value);
+          render();
+        });
+        root.append(button);
+      });
+    }
+
+    function renderFilters() {
+      const categories = ["전체", ...new Set(state.terms.map((term) => term.category))];
+      const workflows = ["전체", ...workflowOrder.filter((stage) => state.terms.some((term) => term.workflow_stage === stage))];
+      const statuses = ["전체", ...new Set(state.terms.map((term) => term.review_status))];
+
+      renderFilterGroup("#categoryFilters", categories, state.category, "category", (value) => {
+        state.category = value;
+        state.goal = "custom";
+      });
+      renderFilterGroup("#workflowFilters", workflows, state.workflow, "workflow_stage", (value) => {
+        state.workflow = value;
+        state.goal = "custom";
+      });
+      renderFilterGroup("#statusFilters", statuses, state.status, "review_status", (value) => {
+        state.status = value;
+        state.goal = "custom";
+      });
+    }
+
+    function renderGoals() {
+      const root = $("#goalGrid");
+      root.innerHTML = "";
+
+      goals.forEach((goal, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `goal-card${goal.id === state.goal ? " active" : ""}`;
+        button.innerHTML = `
+          <span class="goal-index">Goal ${String(index + 1).padStart(2, "0")}</span>
+          <span class="goal-title">${escapeHtml(goal.title)}</span>
+          <span class="goal-desc">${escapeHtml(goal.description)}</span>
+          <span class="goal-meta">${escapeHtml(goal.meta)}</span>
+        `;
+        button.addEventListener("click", () => {
+          applyGoal(goal.id);
+        });
+        root.append(button);
+      });
+    }
+
+    function applyGoal(goalId) {
+      const goal = goals.find((item) => item.id === goalId);
+      if (!goal) return;
+
+      state.goal = goal.id;
+      state.category = goal.filters.category;
+      state.workflow = goal.filters.workflow;
+      state.query = goal.filters.query;
+      state.view = goal.filters.view;
+      state.selectedId = null;
+      $("#search").value = state.query;
+      render();
+      document.querySelector(".workspace").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function renderList(terms) {
+      const root = $("#termList");
+      root.innerHTML = "";
+
+      if (!terms.length) {
+        root.innerHTML = '<div class="empty">조건에 맞는 용어가 없습니다.</div>';
+        return;
+      }
+
+      if (!terms.some((term) => term.id === state.selectedId)) {
+        state.selectedId = terms[0].id;
+      }
+
+      terms.forEach((term) => {
+        const article = document.createElement("article");
+        article.className = `panel term-card${term.id === state.selectedId ? " active" : ""}`;
+        article.tabIndex = 0;
+        article.innerHTML = `
+          <div class="term-head">
+            <div>
+              <h2 class="term-name">${escapeHtml(term.english_term)}</h2>
+              <div class="term-ko">${escapeHtml(term.korean_term)}${term.abbreviation ? ` · ${escapeHtml(term.abbreviation)}` : ""}</div>
+            </div>
+            <span class="badge">${escapeHtml(state.view === "flow" ? term.workflow_stage : term.category)}</span>
+          </div>
+          <p class="term-desc">${escapeHtml(term.plain_description)}</p>
+          <div class="term-footer">${escapeHtml(term.level)} · ${escapeHtml(term.review_status)}</div>
+        `;
+        article.addEventListener("click", () => {
+          state.selectedId = term.id;
+          state.goal = "custom";
+          render();
+        });
+        article.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            state.selectedId = term.id;
+            state.goal = "custom";
+            render();
+          }
+        });
+        root.append(article);
+      });
+    }
+
+    function renderDetail(terms) {
+      const term = terms.find((item) => item.id === state.selectedId) || terms[0];
+      const root = $("#detail");
+
+      if (!term) {
+        root.innerHTML = '<div class="empty">선택된 용어가 없습니다.</div>';
+        return;
+      }
+
+      root.innerHTML = `
+        <h2>${escapeHtml(term.english_term)}</h2>
+        <div class="korean">${escapeHtml(term.korean_term)}${term.abbreviation ? ` · ${escapeHtml(term.abbreviation)}` : ""}</div>
+        <div class="meta-row">
+          <span class="badge">${escapeHtml(term.category)}</span>
+          <span class="badge">${escapeHtml(term.workflow_stage)}</span>
+          <span class="badge">${escapeHtml(term.level)}</span>
+          <span class="badge status">${escapeHtml(term.review_status)}</span>
+        </div>
+        <div class="section">
+          <h3>Plain definition</h3>
+          <p>${escapeHtml(term.plain_description)}</p>
+        </div>
+        <div class="section">
+          <h3>Business example</h3>
+          <p>${escapeHtml(term.business_example)}</p>
+        </div>
+        <div class="section">
+          <h3>Screen hint</h3>
+          <p>${escapeHtml(term.screen_hint)}</p>
+        </div>
+        <div class="section">
+          <h3>Related terms</h3>
+          <p>${renderRelatedTerms(term.related_terms)}</p>
+        </div>
+        <div class="section">
+          <h3>Official source</h3>
+          <p><a class="source" href="${escapeHtml(term.source_url)}">${escapeHtml(term.source_url)}</a></p>
+        </div>
+      `;
+    }
+
+    function findTermByName(name) {
+      const normalized = name.trim().toLowerCase();
+      return state.terms.find((term) =>
+        term.english_term.toLowerCase() === normalized ||
+        term.korean_term.toLowerCase() === normalized ||
+        term.abbreviation.toLowerCase() === normalized
+      );
+    }
+
+    function renderRelatedTerms(relatedTerms) {
+      const names = relatedTerms.split(";").map((name) => name.trim()).filter(Boolean);
+      if (!names.length) return "";
+
+      return names.map((name) => {
+        const related = findTermByName(name);
+        if (!related) return escapeHtml(name);
+        return `<a class="source related-term-link" href="?term=${encodeURIComponent(related.id)}">${escapeHtml(name)}</a>`;
+      }).join(" · ");
+    }
+
+    function updateUrl() {
+      if (suppressUrlUpdate) return;
+
+      const params = new URLSearchParams();
+      if (state.goal && state.goal !== "custom") params.set("goal", state.goal);
+      if (state.selectedId) params.set("term", state.selectedId);
+      const query = params.toString();
+      const nextUrl = `${location.pathname}${query ? `?${query}` : ""}`;
+      history.replaceState(null, "", nextUrl);
+    }
+
+    function render() {
+      const filtered = sortTerms(filterTerms());
+      renderGoals();
+      renderFilters();
+      renderList(filtered);
+      renderDetail(filtered);
+      $("#resultSummary").innerHTML = `핵심 용어 <strong>${state.terms.length}</strong>개 중 검색 결과 <strong>${filtered.length}</strong>개`;
+      const goal = goals.find((item) => item.id === state.goal);
+      $("#sortSummary").textContent = `${goal ? goal.title : "직접 필터"} · ${state.view === "flow" ? "업무 흐름순" : "ABC순"}`;
+      $("#termView").classList.toggle("active", state.view === "terms");
+      $("#flowView").classList.toggle("active", state.view === "flow");
+      updateUrl();
+    }
+
+    function applyInitialUrlState() {
+      const params = new URLSearchParams(location.search);
+      const goalId = params.get("goal");
+      const termId = params.get("term");
+      const goal = goals.find((item) => item.id === goalId);
+
+      suppressUrlUpdate = true;
+      if (goal) {
+        state.goal = goal.id;
+        state.category = goal.filters.category;
+        state.workflow = goal.filters.workflow;
+        state.query = goal.filters.query;
+        state.view = goal.filters.view;
+        $("#search").value = state.query;
+      }
+      if (termId && state.terms.some((term) => term.id === termId)) {
+        state.selectedId = termId;
+      }
+      suppressUrlUpdate = false;
+    }
+
+    async function loadTerms() {
+      try {
+        const response = await fetch("../data/glossary-seed.csv");
+        if (!response.ok) throw new Error(`CSV load failed: ${response.status}`);
+        state.terms = parseCsv(await response.text());
+        state.selectedId = state.terms.find((term) => term.id === "requisition")?.id || state.terms[0]?.id;
+        applyInitialUrlState();
+        render();
+      } catch (error) {
+        $("#resultSummary").textContent = "CSV를 불러오지 못했습니다. 로컬 서버에서 열어주세요.";
+        $("#termList").innerHTML = `<div class="empty">${escapeHtml(error.message)}</div>`;
+      }
+    }
+
+    $("#search").addEventListener("input", (event) => {
+      state.query = event.target.value;
+      state.goal = "custom";
+      render();
+    });
+    $("#termView").addEventListener("click", () => {
+      state.view = "terms";
+      state.goal = "custom";
+      render();
+    });
+    $("#flowView").addEventListener("click", () => {
+      state.view = "flow";
+      state.goal = "custom";
+      render();
+    });
+
+    loadTerms();
+  </script>
+</body>
+</html>

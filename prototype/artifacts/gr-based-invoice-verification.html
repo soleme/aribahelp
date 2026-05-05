@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>입고 기준 송장 검증</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <nav class="top-nav"><a class="brand" href="../"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div class="brand-title">SAP Ariba Glossary</div></a><a class="back-link" href="../">Back to glossary</a></nav>
+  <header class="hero"><div class="hero-inner"><p class="eyebrow">Workflow artifact</p><h1>입고 기준 송장 검증</h1><p class="lead">송장 라인이 발주와 입고를 기준으로 검증되고 Invoice Reconciliation 문서로 이어지는 정산 흐름입니다.</p><div class="m-stripe" aria-hidden="true"><span></span><span></span><span></span></div></div></header>
+  <main class="content">
+    <section class="section"><h2>이 흐름은 무엇인가</h2><p>입고 기준 송장 검증은 공급업체 위치 설정과 발주 라인 정보를 바탕으로, 송장 라인이 사용 가능한 입고와 연결되는지 확인하는 방식입니다.</p></section>
+    <section class="section"><h2>자체 다이어그램</h2><div class="diagram"><div class="diagram-step"><span>01</span><strong>공급업체 설정</strong><em>입고 기준 검증을 적용합니다.</em></div><div class="diagram-step"><span>02</span><strong>PR/PO 생성</strong><em>요청과 발주가 생성됩니다.</em></div><div class="diagram-step"><span>03</span><strong>입고 처리</strong><em>수령 수량을 기록합니다.</em></div><div class="diagram-step"><span>04</span><strong>송장 제출</strong><em>공급업체가 청구합니다.</em></div><div class="diagram-step"><span>05</span><strong>IR 생성</strong><em>송장 대사 문서가 만들어집니다.</em></div><div class="diagram-step"><span>06</span><strong>예외 처리</strong><em>차이가 있으면 담당자가 해결합니다.</em></div></div></section>
+    <section class="section"><h2>단계별 흐름</h2><ol class="flow"><li><strong>01 Configure supplier</strong>관리자가 공급업체 위치에 입고 기준 송장 검증을 설정합니다.</li><li><strong>02 Create PR</strong>구매자가 구매요청을 생성합니다.</li><li><strong>03 Generate PO</strong>승인 후 발주서가 생성되어 네트워크로 전송됩니다.</li><li><strong>04 Receive goods</strong>입고 담당자가 실제 수령 수량을 입고 처리합니다.</li><li><strong>05 Submit invoice</strong>공급업체가 송장을 제출합니다.</li><li><strong>06 Create IR</strong>SAP Ariba가 IR 문서를 만들고 입고 기준으로 검증합니다.</li></ol></section>
+    <section class="section"><h2>관련 용어</h2><ul class="term-grid"><li><a href="../?term=supplier-location">Supplier Location</a></li><li><a href="../?term=purchase-order">Purchase Order</a></li><li><a href="../?term=goods-receipt">Goods Receipt</a></li><li><a href="../?term=invoice">Invoice</a></li><li><a href="../?term=invoice-reconciliation">Invoice Reconciliation</a></li><li><a href="../?term=exception">Exception</a></li></ul></section>
+    <section class="section"><h2>예외 상황</h2><ul class="exception-grid"><li>입고 수량보다 송장 수량이 많으면 예외가 발생할 수 있습니다.</li><li>반품은 기존 입고에 연결된 마이너스 입고로 처리될 수 있습니다.</li><li>입고가 없는 송장 라인은 검증을 통과하지 못할 수 있습니다.</li></ul></section>
+    <section class="source-box"><span class="source-title">Official SAP source</span><a href="https://help.sap.com/docs/buying-invoicing/invoicing-and-payment-process-guide/workflow-for-goods-receipt-based-invoice-verification-in-sap-ariba-buying-and-invoicing-aede7515ef3148f5a0f96e05d8670438">Workflow for Goods Receipt-Based Invoice Verification</a></section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>발주 프로세스</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <nav class="top-nav">
+    <a class="brand" href="../"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div class="brand-title">SAP Ariba Glossary</div></a>
+    <a class="back-link" href="../">Back to glossary</a>
+  </nav>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Workflow artifact</p>
+      <h1>발주 프로세스</h1>
+      <p class="lead">승인된 구매요청이 공급업체별 발주서로 생성되고 SAP Business Network 또는 수동 방식으로 전달되는 흐름입니다.</p>
+      <div class="m-stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+  <main class="content">
+    <section class="section"><h2>이 흐름은 무엇인가</h2><p>발주서는 구매자가 공급업체에 물품이나 서비스를 주문하는 공식 문서입니다. SAP Ariba Buying 솔루션은 구매요청이 완전 승인되면 발주서를 자동 생성할 수 있습니다.</p></section>
+    <section class="section"><h2>자체 다이어그램</h2><div class="diagram"><div class="diagram-step"><span>01</span><strong>PR 승인</strong><em>구매요청이 완전 승인됩니다.</em></div><div class="diagram-step"><span>02</span><strong>PO 생성</strong><em>공급업체별 발주서가 생성됩니다.</em></div><div class="diagram-step"><span>03</span><strong>전송 방식</strong><em>네트워크 또는 수동 방식으로 전달됩니다.</em></div><div class="diagram-step"><span>04</span><strong>공급업체 응답</strong><em>주문 확인 또는 변경 조건을 보냅니다.</em></div><div class="diagram-step"><span>05</span><strong>입고</strong><em>물품과 서비스를 수령합니다.</em></div><div class="diagram-step"><span>06</span><strong>송장</strong><em>송장 대사로 이어집니다.</em></div></div></section>
+    <section class="section">
+      <h2>단계별 흐름</h2>
+      <ol class="flow">
+        <li><strong>01 PR approved</strong>구매요청이 완전 승인됩니다.</li>
+        <li><strong>02 PO generated</strong>품목과 공급업체 기준으로 발주서가 생성됩니다.</li>
+        <li><strong>03 Send order</strong>SAP Business Network 또는 이메일/팩스 등 수동 방식으로 전송됩니다.</li>
+        <li><strong>04 Supplier response</strong>공급업체가 주문 확인을 보내거나 납품을 준비합니다.</li>
+        <li><strong>05 Receive goods</strong>물품 또는 서비스를 수령하고 입고를 처리합니다.</li>
+        <li><strong>06 Invoice follows</strong>공급업체 송장 처리와 대사로 이어집니다.</li>
+      </ol>
+    </section>
+    <section class="section"><h2>관련 용어</h2><ul class="term-grid"><li><a href="../?term=purchase-order">Purchase Order</a></li><li><a href="../?term=order-confirmation">Order Confirmation</a></li><li><a href="../?term=ship-notice">Ship Notice</a></li><li><a href="../?term=receipt">Receipt</a></li><li><a href="../?term=service-sheet">Service Sheet</a></li><li><a href="../?term=invoice">Invoice</a></li></ul></section>
+    <section class="section"><h2>예외 상황</h2><ul class="exception-grid"><li>수요 집계 품목은 구매 담당자가 별도 집계 구매요청으로 처리할 수 있습니다.</li><li>공급업체가 네트워크에 연결되지 않으면 수동 발주 방식이 사용될 수 있습니다.</li><li>발행 후 수량이나 납기가 바뀌면 변경 발주가 필요할 수 있습니다.</li></ul></section>
+    <section class="source-box"><span class="source-title">Official SAP source</span><a href="https://help.sap.com/docs/buying-invoicing/purchasing-guide-for-procurement-professionals/purchase-order-process-6b32ab8fc1da1014bbcef40b7787d981">Purchase Order Process</a></section>
+  </main>
+</body>
+</html>

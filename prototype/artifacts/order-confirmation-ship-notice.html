@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>주문 확인과 출하 통지</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <nav class="top-nav"><a class="brand" href="../"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div class="brand-title">SAP Ariba Glossary</div></a><a class="back-link" href="../">Back to glossary</a></nav>
+  <header class="hero"><div class="hero-inner"><p class="eyebrow">Workflow artifact</p><h1>주문 확인과 출하 통지</h1><p class="lead">공급업체가 발주서를 받은 뒤 주문 확인과 출하 통지를 통해 납품 의사와 배송 정보를 구매자에게 전달하는 흐름입니다.</p><div class="m-stripe" aria-hidden="true"><span></span><span></span><span></span></div></div></header>
+  <main class="content">
+    <section class="section"><h2>이 흐름은 무엇인가</h2><p>SAP Business Network에서 공급업체는 발주서를 기준으로 주문 확인, 출하 통지, 서비스 시트, 송장을 생성할 수 있습니다. 제어 키와 거래 규칙은 어떤 문서가 필수인지 제어합니다.</p></section>
+    <section class="section"><h2>자체 다이어그램</h2><div class="diagram"><div class="diagram-step"><span>01</span><strong>PO 수신</strong><em>공급업체가 발주서를 받습니다.</em></div><div class="diagram-step"><span>02</span><strong>주문 확인</strong><em>수락 또는 변경 조건을 보냅니다.</em></div><div class="diagram-step"><span>03</span><strong>출하 준비</strong><em>배송 정보가 준비됩니다.</em></div><div class="diagram-step"><span>04</span><strong>출하 통지</strong><em>수량과 운송 정보를 보냅니다.</em></div><div class="diagram-step"><span>05</span><strong>배송 추적</strong><em>운송장 번호로 상태를 봅니다.</em></div><div class="diagram-step"><span>06</span><strong>입고</strong><em>도착 수량을 기록합니다.</em></div></div></section>
+    <section class="section"><h2>단계별 흐름</h2><ol class="flow"><li><strong>01 Receive PO</strong>공급업체가 발주서를 수신합니다.</li><li><strong>02 Confirm order</strong>공급업체가 주문 수락 또는 변경 조건을 확인합니다.</li><li><strong>03 Prepare shipment</strong>물품 출하를 준비합니다.</li><li><strong>04 Send notice</strong>출하 통지에 수량과 운송 정보를 담아 보냅니다.</li><li><strong>05 Track delivery</strong>구매자는 운송장 번호와 상태를 확인합니다.</li><li><strong>06 Receive</strong>도착한 물품을 입고 처리합니다.</li></ol></section>
+    <section class="section"><h2>관련 용어</h2><ul class="term-grid"><li><a href="../?term=purchase-order">Purchase Order</a></li><li><a href="../?term=order-confirmation">Order Confirmation</a></li><li><a href="../?term=control-key">Control Key</a></li><li><a href="../?term=ship-notice">Ship Notice</a></li><li><a href="../?term=tracking-number">Tracking Number</a></li><li><a href="../?term=receipt">Receipt</a></li></ul></section>
+    <section class="section"><h2>예외 상황</h2><ul class="exception-grid"><li>제어 키가 주문 확인이나 출하 통지를 필수로 요구할 수 있습니다.</li><li>거래 규칙이 과거 배송 예정일 같은 값을 차단할 수 있습니다.</li><li>공급업체가 통합되어 있으면 cXML 또는 EDI로 문서를 자동 전송할 수 있습니다.</li></ul></section>
+    <section class="source-box"><span class="source-title">Official SAP sources</span><p><a href="https://help.sap.com/docs/business-network-for-supply-chain/business-network-buyer-administration/order-confirmation-and-ship-notice-control-keys">Order Confirmation and Ship Notice Control Keys</a></p><p><a href="https://help.sap.com/docs/sisgw/sap-ariba-cloud-integration-gateway-overview-guide/ship-notice">Ship Notice</a></p></section>
+  </main>
+</body>
+</html>

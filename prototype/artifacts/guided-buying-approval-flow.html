@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guided Buying 승인 흐름</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <nav class="top-nav"><a class="brand" href="../"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div class="brand-title">SAP Ariba Glossary</div></a><a class="back-link" href="../">Back to glossary</a></nav>
+  <header class="hero"><div class="hero-inner"><p class="eyebrow">Workflow artifact</p><h1>Guided Buying 승인 흐름</h1><p class="lead">가이드 구매에서 생성된 요청이 활성 승인 프로세스를 참조해 승인자와 승인 규칙을 적용받는 흐름입니다.</p><div class="m-stripe" aria-hidden="true"><span></span><span></span><span></span></div></div></header>
+  <main class="content">
+    <section class="section"><h2>이 흐름은 무엇인가</h2><p>Guided Buying은 사용자가 정책에 맞는 구매 경로를 찾도록 돕고, 제출된 요청은 구매 솔루션의 승인 프로세스를 참조해 Approval Flow를 생성합니다.</p></section>
+    <section class="section"><h2>자체 다이어그램</h2><div class="diagram"><div class="diagram-step"><span>01</span><strong>요청 생성</strong><em>사용자가 구매 요청을 만듭니다.</em></div><div class="diagram-step"><span>02</span><strong>프로세스 참조</strong><em>활성 승인 프로세스를 읽습니다.</em></div><div class="diagram-step"><span>03</span><strong>규칙 적용</strong><em>금액과 품목 조건을 평가합니다.</em></div><div class="diagram-step"><span>04</span><strong>승인자 추가</strong><em>승인 흐름에 사용자를 배정합니다.</em></div><div class="diagram-step"><span>05</span><strong>승인/반려</strong><em>승인자가 판단합니다.</em></div><div class="diagram-step"><span>06</span><strong>후속 처리</strong><em>발주 또는 수정으로 이어집니다.</em></div></div></section>
+    <section class="section"><h2>단계별 흐름</h2><ol class="flow"><li><strong>01 Create request</strong>사용자가 guided buying에서 요청을 만듭니다.</li><li><strong>02 Reference process</strong>활성 구매요청 승인 프로세스를 참조합니다.</li><li><strong>03 Apply rules</strong>금액과 품목 및 조직 기준 승인 규칙을 적용합니다.</li><li><strong>04 Add approvers</strong>적절한 승인자를 승인 흐름에 추가합니다.</li><li><strong>05 Approve or deny</strong>승인자는 승인 또는 반려합니다.</li><li><strong>06 Continue process</strong>승인 결과에 따라 발주 또는 수정 절차로 이어집니다.</li></ol></section>
+    <section class="section"><h2>관련 용어</h2><ul class="term-grid"><li><a href="../?term=guided-buying">Guided Buying</a></li><li><a href="../?term=approval-flow">Approval Flow</a></li><li><a href="../?term=approval-rule">Approval Rule</a></li><li><a href="../?term=approver">Approver</a></li><li><a href="../?term=notification">Notification</a></li><li><a href="../?term=task">Task</a></li></ul></section>
+    <section class="section"><h2>예외 상황</h2><ul class="exception-grid"><li>승인 규칙 설정에 따라 예상보다 많은 승인자가 추가될 수 있습니다.</li><li>입고 승인 흐름에는 별도 edit rule action 제약이 있을 수 있습니다.</li><li>반려된 요청은 수정 후 다시 제출해야 할 수 있습니다.</li></ul></section>
+    <section class="source-box"><span class="source-title">Official SAP source</span><a href="https://help.sap.com/docs/buying-invoicing/guided-buying-administration/approval-flows-in-guided-buying-f75adff652ab4a658d7173a2b7e39495">Approval Flows in Guided Buying</a></section>
+  </main>
+</body>
+</html>
